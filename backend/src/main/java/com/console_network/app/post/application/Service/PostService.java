@@ -1,11 +1,15 @@
 package com.console_network.app.post.application.Service;
 import com.console_network.app.post.infrastructure.out.Db.postInMemory;
+import com.console_network.app.post.infrastructure.out.Dto.DashBoardPostResponse;
 import  com.console_network.app.user.domain.model.User;
 import com.console_network.app.post.domain.model.Post;
 import com.console_network.app.post.domain.repository.in.*;
 import com.console_network.app.user.domain.repository.out.userRepository;
 import com.console_network.app.user.infrastructure.out.dto.UserDto;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,26 +36,30 @@ public class PostService implements createPostUseCase, deletePostUseCase, getPos
             UserDto userDto = user.get();
             User foundedUser = userRepository.findUsersByName(userDto.getName());
 
-            // Log para verificar que estamos trabajando con el usuario correcto
-            System.out.println("Usuario encontrado: " + foundedUser.getName());
-
             foundedUser.getPosts().add(post);
-
             // Verificar que el post se agrega al usuario correcto
-            System.out.println("Posts del usuario antes de guardar: " + foundedUser.getPosts());
-
             createPostUseCase.createPost(userDto.getName(), post);
-
             // Verificar que el post se guarda correctamente
-            System.out.println("Posts del usuario después de guardar: " + foundedUser.getPosts());
-
             return foundedUser.getPosts();
         } else {
             throw new RuntimeException("User not found: " + postOwner);
         }
     }
 
+public List<DashBoardPostResponse> getDashBoard(String name){
+        User user = userRepository.findUsersByName(name);        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
+    List<User> followingList = user.getFollowing();
+        List<DashBoardPostResponse> dashBoardPosts =  new ArrayList<>();
+        for(User users: followingList){
+        for(Post post: users.getPosts()){
+            String formattedMessage = String.format("%s @%s @%s", post.getText(),post.getPostOwner(), post.getCreatedAt().format(formatter));
+dashBoardPosts.add(new DashBoardPostResponse(formattedMessage));
+        }
+        }
+        return dashBoardPosts;
+
+    }
 
 
     @Override

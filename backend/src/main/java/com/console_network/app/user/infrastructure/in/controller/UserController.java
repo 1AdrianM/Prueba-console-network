@@ -40,5 +40,5 @@ public class UserController {
     public String Follow(@PathVariable("userDestino") String userDestino, @RequestBody FollowRequest request ) {
         return userService.Follow(request.getUserOrigen(), userDestino);
 
-}
+    }
 }

@@ -1,5 +1,6 @@
 package com.console_network.app.post.infrastructure.in.controllers;
 import com.console_network.app.post.domain.model.Post;
+import com.console_network.app.post.infrastructure.out.Dto.DashBoardPostResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +35,17 @@ public class PostController {
 
         @DeleteMapping("user/delete/post/{id}")
         public String deletePost(@PathVariable("id") String id) {
-        postService.deletePost(id);
-        return "post deleted";
-        //a arreglar
-}
+            postService.deletePost(id);
+            return "post deleted";
+            //a arreglar
+        }
+            @GetMapping("user/{name}/dashboard")
+      public ResponseEntity<List<DashBoardPostResponse>> getDashBoard(@PathVariable("name") String name) {
+            return new ResponseEntity<>(postService.getDashBoard(name), HttpStatus.OK);
+
+            }
+        }
 
 
 
-
-
-}
 

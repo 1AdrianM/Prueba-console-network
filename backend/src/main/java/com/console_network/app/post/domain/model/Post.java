@@ -2,15 +2,14 @@ package com.console_network.app.post.domain.model;
 
 import com.console_network.app.user.domain.model.User;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class Post implements Cloneable {
-public Post(UUID id, String postOwner,String title, String text, LocalDateTime createdAt){
-this.id= UUID.randomUUID();
+public Post(UUID id, String postOwner, String text, LocalTime createdAt){
+this.id= id;
 this.postOwner=postOwner;
- this.title=title;
+
  this.createdAt=createdAt;
  this.text=text;
 }
@@ -18,21 +17,19 @@ this.postOwner=postOwner;
     }
      private UUID id;
 private String postOwner;
-    private String title;
+
     private String text;
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalTime createdAt;
 
     @Override
     public Post clone() {
-        return new Post(this.id, this.postOwner, this.title, this.text, this.createdAt);
+        return new Post(this.id, this.postOwner, this.text, this.createdAt);
     }
 
     public  UUID getId(){return id;}
     public void setId(UUID id){this.id=id;}
     public String getPostOwner(){ return postOwner;}
     public void setPostOwner(String postOwner){this.postOwner=postOwner;}
-      public String getTitle(){return title;}
-    public void setTitle(String title){this.title=title;}
     public String getText(){
         return text;
     }
@@ -40,10 +37,10 @@ private String postOwner;
         this.text=text;
     }
 
-    public LocalDateTime getCreatedAt(){
+    public LocalTime getCreatedAt(){
         return createdAt;
     }
-    public void setCreatedAt(LocalDateTime createdAt){
+    public void setCreatedAt(LocalTime createdAt){
         this.createdAt=createdAt;
     }
 
