@@ -1,12 +1,11 @@
-package Request;
+package main.java.Request;
 
-import Commands.CreateCommand;
-import Commands.DashBoardCommand;
-import Commands.FollowCommand;
-import Commands.PostCommand;
-import Interfaz.Command;
+import main.java.Commands.DashBoardCommand;
+import main.java.Commands.CreateCommand;
+import main.java.Commands.FollowCommand;
+import main.java.Commands.PostCommand;
+import main.java.Interfaz.Command;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

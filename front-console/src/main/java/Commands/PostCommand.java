@@ -1,6 +1,6 @@
-package Commands;
-import Request.Http;
-import Interfaz.Command;
+package main.java.Commands;
+import main.java.Request.Http;
+import main.java.Interfaz.Command;
 public class PostCommand implements Command {
     @Override
     public void execute(String[] args) {

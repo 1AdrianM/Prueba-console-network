@@ -1,7 +1,7 @@
-package Commands;
+package main.java.Commands;
 
-import Interfaz.Command;
-import Request.Http;
+import main.java.Interfaz.Command;
+import main.java.Request.Http;
 
 public class DashBoardCommand implements Command {
     @Override
