@@ -63,7 +63,7 @@ public static void httpHandleUserCreation(String name){
 
             int responseCode = conn.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
-                System.out.println(username + " posted -> \"" + message + "\"@" + time);
+                System.out.println(username + " posted -> \"" + message + "\" @" + time);
             } else {
                 System.out.println("Failed to post message");
             }

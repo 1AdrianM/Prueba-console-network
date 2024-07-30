@@ -13,7 +13,7 @@ public class Main {
         System.out.println("* Para hacer publicaciones- post @usuario texto\n");
         System.out.println("* Para seguir a usuarios - follow @tuUsuario @Usuario\n");
         System.out.println("* Para ver tu muro - dashboard @tuUsuario\n");
-        System.out.println("* Para carear un usuario -  create @Usuario\n");
+        System.out.println("* Para crear un usuario -  create @Usuario\n");
         System.out.println("* Cerrar para Salir");
         while(banderita){
 
