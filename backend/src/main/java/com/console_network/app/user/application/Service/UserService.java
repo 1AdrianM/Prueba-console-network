@@ -1,7 +1,7 @@
 package com.console_network.app.user.application.Service;
 import com.console_network.app.user.domain.model.User;
 import com.console_network.app.user.domain.repository.in.*;
-import com.console_network.app.user.infrastructure.out.dto.UserDto;
+import com.console_network.app.user.infrastructure.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,10 +23,7 @@ public class UserService implements getUserUseCase, createUserUseCase, getUserBy
     public String Follow(String userOrigen, String userDestino) {
        return addFollowerUseCase.Follow(userOrigen, userDestino);
     }
-    @Override
-    public Optional<List<UserDto>> getFollowers(UserDto user) {
-        return addFollowerUseCase.getFollowers(user);
-    }
+
     @Override
     public UserDto createUser(User user) {
     return createUserUseCase.createUser(user);

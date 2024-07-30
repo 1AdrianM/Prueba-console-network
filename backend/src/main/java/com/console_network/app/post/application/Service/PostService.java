@@ -1,28 +1,24 @@
 package com.console_network.app.post.application.Service;
-import com.console_network.app.post.infrastructure.out.Db.postInMemory;
-import com.console_network.app.post.infrastructure.out.Dto.DashBoardPostResponse;
+import com.console_network.app.post.infrastructure.Dto.DashBoardPostResponse;
 import  com.console_network.app.user.domain.model.User;
 import com.console_network.app.post.domain.model.Post;
 import com.console_network.app.post.domain.repository.in.*;
 import com.console_network.app.user.domain.repository.out.userRepository;
-import com.console_network.app.user.infrastructure.out.dto.UserDto;
+import com.console_network.app.user.infrastructure.dto.UserDto;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class PostService implements createPostUseCase, deletePostUseCase, getPostByUserUseCase, getPostsUseCase {
+public class PostService implements createPostUseCase, getPostByUserUseCase, getPostsUseCase {
     private final createPostUseCase createPostUseCase;
-    private final deletePostUseCase deletePostUseCase;
     private final  getPostByUserUseCase getPostByUserUseCase;
     private final getPostsUseCase getPostsUseCase;
     private final userRepository userRepository;
 
-    public PostService(createPostUseCase createPostUseCase, deletePostUseCase deletePostUseCase, getPostByUserUseCase getPostByUserUseCase, getPostsUseCase getPostsUseCase, userRepository userRepository){
+    public PostService(createPostUseCase createPostUseCase, getPostByUserUseCase getPostByUserUseCase, getPostsUseCase getPostsUseCase, userRepository userRepository){
         this.createPostUseCase = createPostUseCase;
-        this.deletePostUseCase = deletePostUseCase;
         this.getPostByUserUseCase = getPostByUserUseCase;
         this.getPostsUseCase = getPostsUseCase;
         this.userRepository = userRepository;
@@ -47,7 +43,8 @@ public class PostService implements createPostUseCase, deletePostUseCase, getPos
     }
 
 public List<DashBoardPostResponse> getDashBoard(String name){
-        User user = userRepository.findUsersByName(name);        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        User user = userRepository.findUsersByName(name);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
     List<User> followingList = user.getFollowing();
         List<DashBoardPostResponse> dashBoardPosts =  new ArrayList<>();
@@ -61,11 +58,6 @@ dashBoardPosts.add(new DashBoardPostResponse(formattedMessage));
 
     }
 
-
-    @Override
-    public void deletePost(String userName) {
-deletePostUseCase.deletePost(userName);
-    }
 
     @Override
     public List<Post> getPostByUser(String userName) {

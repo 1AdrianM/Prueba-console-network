@@ -9,6 +9,5 @@ public interface postRepository {
     List<Post> savePost(String postOwner,Post post);
     List<Post> findByUser(String userName);
     List<Post> findAll();
-    void deletePost(String id);
 
 }

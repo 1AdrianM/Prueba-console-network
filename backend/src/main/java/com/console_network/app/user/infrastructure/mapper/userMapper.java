@@ -1,15 +1,12 @@
 package com.console_network.app.user.infrastructure.mapper;
-import  com.console_network.app.post.domain.repository.out.postRepository;
 
 import com.console_network.app.post.domain.model.Post;
 import com.console_network.app.user.domain.model.User;
-import com.console_network.app.user.infrastructure.out.dto.UserDto;
+import com.console_network.app.user.infrastructure.dto.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.console_network.app.user.infrastructure.out.InMemoryDb.InMemoryDb.usersInMemory;
 
 public class userMapper {
 
